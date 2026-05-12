@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecipeHub Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="login-page">
+  <main class="login-card">
+    <h1>EMMA RECIPE HUB</h1>
+    <h3>password:cooldude</h3>
+    <h3>username:alvin</h3>
+    <h3>gmail: random email</h3>
+    <p>Sign in to publish recipes, upload photos, and rate community favorites.</p>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required minlength="6" />
+      </div>
+
+      <button type="submit" class="button primary">Login</button>
+    </form>
+    <p class="small-note">Your login is saved locally for this demo. Refresh keeps you signed in.</p>
+  </main>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const name = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!name || !email || password.length < 6) {
+        alert('Please enter a valid username, email, and password with at least 6 characters.');
+        return;
+      }
+
+      const user = { name, email, loggedInAt: new Date().toISOString() };
+      localStorage.setItem('recipePlatformUser', JSON.stringify(user));
+      window.location.href = 'work.html';
+    });
+  </script>
+</body>
+</html>
